@@ -4,9 +4,12 @@ from django.db import models
 from django.contrib.auth import get_user_model
 from ckeditor.fields import RichTextField
 
+from s3direct.fields import S3DirectField
+
 
 class Article(models.Model):
     title = models.CharField(max_length=200, unique=True)
+    # article_image = S3DirectField(dest='primary_destination', blank = True, null =True)
     article_image = models.ImageField(upload_to='images', blank = True, null =True)
     description = models.CharField(max_length=300)
     author = models.ForeignKey(get_user_model(), on_delete= models.CASCADE, related_name='uploader')
@@ -29,7 +32,6 @@ class Comment(models.Model):
         ordering = ['-created_on']
 
     def __str__(self):
-    #     # return 'Comment: {} by {}'.format(self.body, self.name)
         return self.body
 
 class Subscribers (models.Model):

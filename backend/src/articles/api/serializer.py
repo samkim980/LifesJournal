@@ -12,7 +12,6 @@ class SubscriberSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class ArticleSerializer(serializers.ModelSerializer):
-    # comments = CommentsSerializer(many = True)
     author = serializers.ReadOnlyField(source='author.username')
     class Meta:
         model = Article

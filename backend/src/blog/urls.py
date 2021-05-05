@@ -11,10 +11,12 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('api-auth/', include('rest_framework.urls')),
     path('api/blogs', include('articles.api.urls')),
+    path('s3direct/', include('s3direct.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
-    # re_path('.*', TemplateView.as_view(template_name = 'index.html'))
 ]
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     urlpatterns+=static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+# re_path('.*', TemplateView.as_view(template_name = 'index.html'))
